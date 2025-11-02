@@ -1,6 +1,4 @@
 
-import HomeView from "@/views/HomeView.vue";
-import ProjectsView from "@/views/ProjectsView.vue";
 import { createRouter, createWebHistory } from "vue-router";
 
 
@@ -10,12 +8,17 @@ const router = createRouter({
         {
             path: '/',
             name: 'home',
-            component: HomeView
+            component: () => import('@/views/HomeView.vue') // dynamic import
         },
         {
             path: '/projects',
             name: 'projects',
-            component: ProjectsView
+            component: () => import('@/views/ProjectsView.vue')
+        },
+        {
+            path: '/projects/:id', //dynamic route
+            name: 'single-project',
+            component: () => import('@/views/SingleProject.vue')
         }
     ]
 })
